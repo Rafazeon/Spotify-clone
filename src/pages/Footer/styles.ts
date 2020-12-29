@@ -8,6 +8,10 @@ export const Content = styled.div`
     max-width: 1200px;
     margin: 0 auto;
 
+    @media only screen and (max-width: 767px) {
+        padding-bottom: 20px;
+    }
+
     img {
         width: 130px;
         margin-left: 23px;
