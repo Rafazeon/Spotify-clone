@@ -5,7 +5,6 @@ export const Container = styled.section`
 `;
 
 export const Content = styled.div`
-    padding-bottom: 30px;
     max-width: 1200px;
     margin: 0 auto;
 
@@ -101,6 +100,7 @@ export const InformationPrivacy = styled.span`
 
     @media only screen and (max-width: 767px) {
         margin-left: 30px;
+        height: 50px;
     }
 
     a {
