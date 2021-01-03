@@ -52,15 +52,4 @@ export default createGlobalStyle`
         border: 0;
         background: transparent;
     }
-
-    // Remove o padding da classe do materialUi do Accordion Collapse
-    .fmAVrR div > div {
-        padding-top: 0px !important;
-        padding-bottom: 0px !important;
-    }
-
-    .iHaOcn div > div {
-        padding-top: 0px !important;
-        padding-bottom: 0px !important;
-    }
 `;
