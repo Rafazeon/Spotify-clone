@@ -1,10 +1,5 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-    display: flex;
-    background-color: #121212;
-`;
-
 export const Content = styled.section`
     display: flex;
     flex-direction: column;
@@ -32,10 +27,4 @@ export const SubTitle = styled.h2`
     font-weight: bold;
 
     text-transform: uppercase;
-`;
-
-export const Player = styled.section`
-    position: absolute;
-    bottom: 0;
-    width: 100%;
 `;

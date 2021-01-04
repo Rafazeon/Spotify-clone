@@ -9,7 +9,6 @@ import LogoImg from '../../assets/logo.png';
 import Drawer from '../../components/Drawer';
 
 const Header: React.FC<MenuProps> = ({ arr }) => {
-    console.log(arr);
     const [open, setOpen] = useState(false);
     const [marked, setMarked] = useState(0);
     const [scroll, setScroll] = useState(false);
