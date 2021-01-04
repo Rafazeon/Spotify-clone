@@ -4,7 +4,11 @@ import { Link } from 'react-router-dom';
 
 import { shade } from 'polished';
 
-import { HeaderScrollProps, HeaderPropsActive } from './interfaces';
+import {
+    HeaderScrollProps,
+    HeaderPropsActive,
+    HeaderLinkColor,
+} from './interfaces';
 
 export const Container = styled.section<HeaderScrollProps>`
     width: 100%;
@@ -98,10 +102,10 @@ export const Separator = styled.p`
     }
 `;
 
-export const LinkRef = styled(Link)`
+export const LinkRef = styled(Link)<HeaderLinkColor>`
     text-decoration: none;
 
     &:hover {
-        color: '#1ed760' !important;
+        color: ${(props) => (props.hover ? props.hover : shade(0.2, '#fff'))};
     }
 `;

@@ -54,7 +54,9 @@ const Header: React.FC<MenuProps> = ({ arr }) => {
                         color={item.color}
                     >
                         {item.separator && <S.Separator />}
-                        <S.LinkRef to={item.link}>{item.name}</S.LinkRef>
+                        <S.LinkRef hover={item.hover} to={item.link}>
+                            {item.name}
+                        </S.LinkRef>
                     </S.ItemList>
                 ))}
             </ul>

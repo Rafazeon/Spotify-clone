@@ -3,5 +3,6 @@ export interface MenuProps {
     color?: string;
     name?: string;
     link?: string;
+    hover?: string;
     separator?: boolean;
 }
