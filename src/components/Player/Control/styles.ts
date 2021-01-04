@@ -63,7 +63,11 @@ export const Volume = styled.div`
     color: #fff;
     position: relative;
     top: 10px;
-    float: right;
+
+    @media only screen and (max-width: 599px) {
+        justify-content: center;
+        margin-bottom: 15px;
+    }
 `;
 
 export const Slider = styled.div<I.SliderProps>`

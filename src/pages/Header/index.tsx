@@ -8,10 +8,11 @@ import { MenuProps } from './interfaces';
 import LogoImg from '../../assets/logo.png';
 import Drawer from '../../components/Drawer';
 
-const Header: React.FC = () => {
+const Header: React.FC<MenuProps> = ({ arr }) => {
+    console.log(arr);
     const [open, setOpen] = useState(false);
     const [marked, setMarked] = useState(0);
-    const [scroll, setScroll] = useState(false)
+    const [scroll, setScroll] = useState(false);
 
     const toggleDrawer = useCallback(
         (param: boolean) => () => {
@@ -28,62 +29,34 @@ const Header: React.FC = () => {
     );
 
     const handleScroll = () => {
-        if(window.scrollY > 0) {
-         return setScroll(true)
+        if (window.scrollY > 0) {
+            return setScroll(true);
         }
 
-        return setScroll(false)
-    }
+        return setScroll(false);
+    };
 
     useEffect(() => {
-        window.addEventListener('scroll', handleScroll, { passive: true })
+        window.addEventListener('scroll', handleScroll, { passive: true });
         return () => {
-            window.removeEventListener('scroll', handleScroll)
-        }
-    }, [window.scrollY])
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [window.scrollY]);
 
-    const List = ({ color }: MenuProps) => {
+    const List = () => {
         return (
             <ul>
-                <S.ItemList
-                    onClick={handleClick(0)}
-                    isActive={marked === 0}
-                    color="#fff"
-                >
-                    Premium
-                </S.ItemList>
-                <S.ItemList
-                    onClick={handleClick(1)}
-                    isActive={marked === 1}
-                    color="#fff"
-                >
-                    Suporte
-                </S.ItemList>
-                <S.ItemList
-                    onClick={handleClick(2)}
-                    isActive={marked === 2}
-                    color="#fff"
-                >
-                    Baixar
-                </S.ItemList>
-
-                <S.Separator />
-
-                <S.ItemList
-                    onClick={handleClick(4)}
-                    isActive={marked === 4}
-                    color="#d9dadc"
-                >
-                    Inscrever-se
-                </S.ItemList>
-
-                <S.ItemList
-                    onClick={handleClick(4)}
-                    isActive={marked === 4}
-                    color="#d9dadc"
-                >
-                    Entrar
-                </S.ItemList>
+                {arr.map((item) => (
+                    <S.ItemList
+                        key={item.id}
+                        onClick={handleClick(item.id)}
+                        isActive={marked === item.id}
+                        color={item.color}
+                    >
+                        {item.separator && <S.Separator />}
+                        <S.LinkRef to={item.link}>{item.name}</S.LinkRef>
+                    </S.ItemList>
+                ))}
             </ul>
         );
     };
@@ -97,7 +70,7 @@ const Header: React.FC = () => {
                 ) : (
                     <FiMenu onClick={toggleDrawer(true)} />
                 )}
-                <List color="#fff" />
+                <List />
             </div>
             <Drawer open={open} toggleDrawer={toggleDrawer} menu={List} />
         </S.Container>

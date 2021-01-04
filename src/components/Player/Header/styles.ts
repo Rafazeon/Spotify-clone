@@ -7,6 +7,10 @@ export const Container = styled.section`
     background-color: #121212;
     padding: 20px;
     justify-content: space-between;
+
+    @media only screen and (max-width: 767px) {
+        margin-bottom: 35px;
+    }
 `;
 
 export const Icon = styled.div`
@@ -23,6 +27,10 @@ export const Profile = styled.div`
     display: flex;
     width: 26%;
     justify-content: space-between;
+
+    @media only screen and (max-width: 767px) {
+        display: none;
+    }
 
     > span {
         display: flex;

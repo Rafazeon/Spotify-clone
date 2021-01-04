@@ -2,35 +2,38 @@ import styled from 'styled-components';
 
 export const Container = styled.section`
     background: #000;
-    padding: 26px;
     height: 800px;
     width: 232px;
     min-height: 100vh;
 
-    ul {
-        margin-top: 20px;
-        margin-bottom: 20px;
+    @media only screen and (max-width: 767px) {
+        width: 0%;
+    }
 
-        li {
-            color: #fff;
-            list-style: none;
-            line-height: 32px;
-            font-weight: bold;
-            cursor: pointer;
+    section {
+        width: 10%;
+        @media only screen and (max-width: 767px) {
+            width: 100%;
+        }
+        line-height: 40px;
 
-            &:hover {
-                color: #1ed760;
+        div {
+            display: flex;
+            flex-direction: column;
+
+            @media only screen and (max-width: 767px) {
+                flex-direction: row;
+            }
+
+            img {
+                @media only screen and (min-width: 769px) {
+                    margin-bottom: 30px;
+                }
+            }
+
+            ul {
+                flex-direction: column;
             }
         }
-    }
-
-    p {
-        text-transform: uppercase;
-        font-weight: bold;
-    }
-
-    img {
-        height: 40px;
-        width: 132px;
     }
 `;

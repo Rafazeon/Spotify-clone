@@ -7,5 +7,6 @@ export interface HeaderPropsActive {
 }
 
 export interface MenuProps {
-    color: string;
+    color?: string;
+    arr: Array<any>;
 }

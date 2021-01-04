@@ -30,7 +30,7 @@ const TemporaryDrawer: React.FC<DrawerProps> = ({
             onClick={toggleDrawer(false)}
             onKeyDown={toggleDrawer(false)}
         >
-            <Menu color="#fff" />
+            <Menu arr={[]} />
         </S.Container>
     );
 

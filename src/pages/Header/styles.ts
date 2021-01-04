@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { Link } from 'react-router-dom';
+
 import { shade } from 'polished';
 
 import { HeaderScrollProps, HeaderPropsActive } from './interfaces';
@@ -25,7 +27,7 @@ export const Container = styled.section<HeaderScrollProps>`
         display: flex;
         margin: 0 auto;
         margin-top: 20px;
-        padding-left: 23px;
+        padding-left: 20px;
 
         img {
             height: 40px;
@@ -52,7 +54,7 @@ export const Container = styled.section<HeaderScrollProps>`
             @media only screen and (max-width: 767px) {
                 display: none;
             }
-
+            padding-left: 5px;
             display: flex;
         }
     }
@@ -61,7 +63,7 @@ export const Container = styled.section<HeaderScrollProps>`
 export const ItemList = styled.li<HeaderPropsActive>`
     color: ${(props) => props.color};
     font-weight: 600;
-    font-size: 15px;
+    font-size: 13px;
     list-style-type: none;
     padding-right: 35px;
     cursor: pointer;
@@ -74,21 +76,16 @@ export const ItemList = styled.li<HeaderPropsActive>`
         font-size: 36px;
         margin-left: 50px;
     }
-
-    &:hover {
-        color: #1ed760;
-    }
 `;
 
 export const Separator = styled.p`
-    padding-right: 20px;
     height: 2px;
     width: 20px;
     background: #fff;
     transform: rotate(90deg);
     position: relative;
-    right: 18px;
     top: 8px;
+    cursor: none;
 
     @media only screen and (max-width: 767px) {
         height: 2px;
@@ -98,5 +95,13 @@ export const Separator = styled.p`
         margin-bottom: 30px;
         margin-left: 70px;
         transform: rotate(0deg);
+    }
+`;
+
+export const LinkRef = styled(Link)`
+    text-decoration: none;
+
+    &:hover {
+        color: '#1ed760' !important;
     }
 `;
