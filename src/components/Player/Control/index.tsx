@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 import Slider, { SliderTooltip, Handle } from 'rc-slider';
 import 'rc-slider/assets/index.css';
@@ -16,8 +16,19 @@ const Control: React.FC = () => {
     const [percent, setPercent] = useState('');
     const [volume, setVolume] = useState(1);
     const [muted, setMuted] = useState(false);
-    const [second, setSecond] = useState(0.0);
+    const [second, setSecond] = useState('0.0');
+    const [secondTime, setSecondTime] = useState(0.0);
     const [totalSecond, setTotalSecond] = useState(0.0);
+    const [totalSecondMinute, setTotalSecondMinute] = useState('0.0');
+
+    const player = useRef<any>(null);
+
+    function convertTime(seconds: number) {
+        const format = (val: number) => `0${Math.floor(val)}`.slice(-2);
+        const minutes = (seconds % 3600) / 60;
+
+        return [minutes, seconds % 60].map(format).join(':');
+    }
 
     const handlePlay = () => {
         setPlay(!play);
@@ -36,18 +47,13 @@ const Control: React.FC = () => {
         const time = value.playedSeconds.toFixed(0) * 1;
         const totalTime = parseInt(value.loadedSeconds, 10);
 
-        function convertTime(seconds: number) {
-            const format = (val: number) => `0${Math.floor(val)}`.slice(-2);
-            const minutes = (seconds % 3600) / 60;
-
-            return [minutes, seconds % 60].map(format).join('.');
-        }
-
-        const secToMinute = parseFloat(convertTime(time));
-        const secTotalToMinute = parseFloat(convertTime(totalTime));
+        const secToMinute = convertTime(time);
+        const secTotalToMinute = convertTime(totalTime);
 
         setSecond(secToMinute);
-        return setTotalSecond(secTotalToMinute);
+        setSecondTime(time);
+        setTotalSecond(totalTime);
+        return setTotalSecondMinute(secTotalToMinute);
     };
 
     const handleVolume = (props: any) => {
@@ -66,11 +72,12 @@ const Control: React.FC = () => {
         );
     };
 
-    const handlePercent = (value: string) => {
+    const handlePercent = (event: number, value: string) => {
+        if (player.current) {
+            player.current.seekTo(event);
+        }
         setPercent(value);
     };
-
-    console.log(totalSecond);
 
     return (
         <S.Container>
@@ -112,9 +119,10 @@ const Control: React.FC = () => {
                         <Fa.FaStepForward />
                     </S.Player>
                     <S.RctPlayer
+                        ref={player}
                         url={soundMp4}
                         playing={play}
-                        onPlay={() => console.log('starts playing')}
+                        onPlay={() => console.log('player starting')}
                         onProgress={(duration: any) => {
                             return handleSecond(duration);
                         }}
@@ -122,15 +130,16 @@ const Control: React.FC = () => {
                     />
                     <S.Slider size={400}>
                         <S.SliderPlayer>
-                            <p>{second.toFixed(2)}</p>
+                            <p>{second}</p>
                             <Slider
                                 min={0}
-                                max={100}
+                                max={totalSecond}
+                                value={secondTime}
                                 defaultValue={0}
-                                onChange={() => handlePercent('s')}
+                                onChange={(e) => handlePercent(e, 's')}
                                 handle={handleVolume}
                             />
-                            <p>{totalSecond.toFixed(2)}</p>
+                            <p>{totalSecondMinute}</p>
                         </S.SliderPlayer>
                     </S.Slider>
                 </M.Grid>
@@ -143,7 +152,7 @@ const Control: React.FC = () => {
                                 max={1}
                                 value={volume}
                                 defaultValue={1}
-                                onChange={() => handlePercent('')}
+                                onChange={(e) => handlePercent(e, '')}
                                 handle={handleVolume}
                             />
                         </S.Slider>
