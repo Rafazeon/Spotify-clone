@@ -73,9 +73,10 @@ const Control: React.FC = () => {
     };
 
     const handlePercent = (event: number, value: string) => {
-        if (player.current) {
+        if (value && player.current) {
             player.current.seekTo(event);
         }
+
         setPercent(value);
     };
 
