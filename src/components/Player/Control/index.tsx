@@ -153,7 +153,7 @@ const Control: React.FC = () => {
                                 min={0}
                                 max={1}
                                 value={volume}
-                                defaultValue={1}
+                                defaultValue={volume}
                                 onChange={(e) => handlePercent(e, '')}
                                 handle={handleVolume}
                             />
