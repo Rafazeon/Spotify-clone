@@ -40,7 +40,7 @@ const Header: React.FC<MenuProps> = ({ arr }) => {
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, [window.scrollY]);
+    }, []);
 
     const List = () => {
         return (
