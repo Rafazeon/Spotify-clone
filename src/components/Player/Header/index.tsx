@@ -1,6 +1,5 @@
 import React from 'react';
 
-import * as M from '@material-ui/core';
 import * as F from 'react-icons/fi';
 import * as S from './styles';
 

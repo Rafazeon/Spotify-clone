@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import Grid from '@material-ui/core/Grid';
 import * as S from './styles';
@@ -29,10 +28,7 @@ const Retrospective: React.FC = () => {
                                 ajudaram a
                             </h3>
 
-                            <h3>
-                                sobreviver ao ano mais longo da
-                                história.
-                            </h3>
+                            <h3>sobreviver ao ano mais longo da história.</h3>
 
                             <S.Btn variant="contained">
                                 Confira sua retrospectiva

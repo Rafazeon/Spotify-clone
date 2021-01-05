@@ -4,8 +4,6 @@ import Header from './Header';
 
 import Content from './Content';
 
-import Menu from './Menu';
-
 import * as S from './styles';
 
 import { albums } from './mocks/content';
@@ -13,7 +11,7 @@ import { albums } from './mocks/content';
 import Layout from './Layout';
 
 const Player: React.FC = () => {
-    const [songs, _] = useState(albums);
+    const [songs] = useState(albums);
     return (
         <Layout>
             <S.Content>

@@ -63,6 +63,7 @@ export const Volume = styled.div`
     color: #fff;
     position: relative;
     top: 10px;
+    cursor: pointer;
 
     @media only screen and (max-width: 599px) {
         justify-content: center;

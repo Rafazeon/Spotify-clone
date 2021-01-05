@@ -9,6 +9,8 @@ import * as Fi from 'react-icons/fi';
 import * as Fa from 'react-icons/fa';
 import * as S from './styles';
 
+import * as Interface from './interfaces';
+
 import soundMp4 from '../../../assets/videos/oasis_wonderwall.mp4';
 
 const Control: React.FC = () => {
@@ -21,7 +23,7 @@ const Control: React.FC = () => {
     const [totalSecond, setTotalSecond] = useState(0.0);
     const [totalSecondMinute, setTotalSecondMinute] = useState('0.0');
 
-    const player = useRef<any>(null);
+    const player = useRef<Interface.PlayerProps>(null);
 
     function convertTime(seconds: number) {
         const format = (val: number) => `0${Math.floor(val)}`.slice(-2);
@@ -43,7 +45,7 @@ const Control: React.FC = () => {
         return setVolume(0);
     };
 
-    const handleSecond = (value: any) => {
+    const handleSecond = (value: Interface.SecondProps) => {
         const time = value.playedSeconds.toFixed(0) * 1;
         const totalTime = parseInt(value.loadedSeconds, 10);
 
@@ -56,7 +58,7 @@ const Control: React.FC = () => {
         return setTotalSecondMinute(secTotalToMinute);
     };
 
-    const handleVolume = (props: any) => {
+    const handleVolume = (props: Interface.VolumeProps) => {
         const { value, dragging, index, rest } = props;
 
         return (
@@ -123,8 +125,7 @@ const Control: React.FC = () => {
                         ref={player}
                         url={soundMp4}
                         playing={play}
-                        onPlay={() => console.log('player starting')}
-                        onProgress={(duration: any) => {
+                        onProgress={(duration: Interface.SecondProps) => {
                             return handleSecond(duration);
                         }}
                         volume={volume}
